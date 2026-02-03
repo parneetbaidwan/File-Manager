@@ -4,7 +4,7 @@ WXFLAGS := $(shell wx-config --cxxflags)
 WXLIBS  := $(shell wx-config --libs)
 
 TARGET := filemanager
-SRC := src/FileManagerApp.cpp src/MainFrame.cpp
+SRC := src/FileManagerApp.cpp src/MainFrame.cpp src/FileSystemService.cpp
 OBJ := $(SRC:.cpp=.o)
 
 all: $(TARGET)
