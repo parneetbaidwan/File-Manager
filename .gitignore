@@ -1,0 +1,6 @@
+# build output
+filemanager
+*.o
+
+# macOS junk
+.DS_Store
