@@ -1,3 +1,7 @@
+# Parneet Baidwan
+# Makefile to build the wxWidgets-based file manager
+# Ensure wx-config is in PATH or set manually below
+
 CXX := clang++
 CXXFLAGS := -std=c++17 -Wall -Wextra -pedantic -O2
 WXFLAGS := $(shell wx-config --cxxflags)

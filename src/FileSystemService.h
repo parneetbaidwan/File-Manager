@@ -1,4 +1,12 @@
-#pragma once
+/*
+Parneet Baidwan - 251259638
+Description: This header file declares the FileSystemService class and related data structures used to interact with the filesystem. The system establishes a clear separation between C++17 filesystem operations and its directory listing functions and file metadata retrieval capabilities and its directory and file operations which include create and delete and rename and copy and move functions.
+February 1, 2026
+*/
+
+#ifndef FILESYSTEMSERVICE_H
+#define FILESYSTEMSERVICE_H
+
 #include <filesystem>
 #include <string>
 #include <vector>
@@ -7,7 +15,7 @@
 
 namespace fs = std::filesystem;
 
-/* - Model for one row in the UI listing */
+// Model for one row in the UI listing 
 struct FileItem
 {
     fs::path fullPath;
@@ -16,7 +24,7 @@ struct FileItem
     std::time_t modified = 0;
 };
 
-/* - Virtual clipboard (not OS clipboard) */
+// Virtual clipboard 
 struct VirtualClipboard
 {
     fs::path source;
@@ -31,7 +39,7 @@ struct VirtualClipboard
     }
 };
 
-/* - Filesystem operations used by the GUI */
+// Filesystem operations used by the GUI
 class FileSystemService final
 {
 public:
@@ -50,3 +58,5 @@ public:
     static bool IsDirectory(const fs::path& p);
     static fs::path CanonicalOrSame(const fs::path& p);
 };
+
+#endif // MAINFRAME_H

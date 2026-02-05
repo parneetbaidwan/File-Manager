@@ -1,4 +1,13 @@
-#pragma once
+/*
+Parneet Baidwan - 251259638
+Description: The MainFrame class declaration in this header file functions as the main window for the file manager application. The document establishes user interface elements which include the file list view and directory path text field and menus and status bar and the event handler methods which handle user actions and file handling activities.
+February 1, 2026
+*/
+
+
+#ifndef MAINFRAME_H
+#define MAINFRAME_H
+
 #include <wx/wx.h>
 #include <wx/listctrl.h>
 #include <filesystem>
@@ -6,34 +15,27 @@
 
 #include "FileSystemService.h"
 
+
+
+
 namespace fs = std::filesystem;
 
-/*
- * MainFrame (wxWidgets "Hello World" style)
- * - In wxWidgets docs, the main window is a wxFrame subclass
- * - Event routing uses an event table (EVT_... macros)
- *
- * Responsibilities:
- * - UI layout (path bar + list + status bar)
- * - Menus + keyboard shortcuts
- * - Dispatch user actions -> FileSystemService
- */
+
+
 class MainFrame final : public wxFrame
 {
 public:
     explicit MainFrame(const wxString& title);
 
 private:
-    // ---- UI ----
     wxTextCtrl* m_pathCtrl = nullptr;
     wxListCtrl* m_listCtrl = nullptr;
 
-    // ---- State ----
     fs::path m_currentDir;
     VirtualClipboard m_clip;
     FileSystemService m_fs;
 
-    // ---- Menu / control IDs ----
+    // menu and control ids
     enum
     {
         ID_Path = wxID_HIGHEST + 1,
@@ -52,17 +54,14 @@ private:
         ID_Exit
     };
 
-    // ---- Setup helpers ----
     void BuildUi();
     void BuildMenus();
     void BuildAccelerators();
 
-    // ---- Core behavior ----
     void SetDirectory(const fs::path& dir);
     void RefreshListing();
     std::optional<fs::path> GetSelectedPath() const;
 
-    // ---- Operations ----
     void DoNew();
     void DoOpen();
     void DoRename();
@@ -71,7 +70,7 @@ private:
     void DoPaste();
     void DoRefresh();
 
-    // ---- Event handlers ----
+    // event handlers
     void OnPathEnter(wxCommandEvent& event);
     void OnItemActivated(wxListEvent& event);
 
@@ -87,10 +86,14 @@ private:
     void OnMenuRefresh(wxCommandEvent& event);
     void OnMenuExit(wxCommandEvent& event);
 
-    // ---- UI utilities ----
+    // ui utilities
     static wxString ToWx(const fs::path& p);
     static wxString FormatLongDate(std::time_t t);
     void ShowError(const wxString& title, const wxString& msg);
 
     wxDECLARE_EVENT_TABLE();
 };
+
+
+#endif // MAINFRAME_H
+
